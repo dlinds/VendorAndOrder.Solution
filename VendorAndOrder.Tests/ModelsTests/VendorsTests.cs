@@ -34,9 +34,15 @@ namespace VendorAndOrder.Tests
     [TestMethod]
     public void GetAll_ReturnsEmptyVendorList_List()
     {
-      //Vendor newVendor = new Vendor("Safeway");
       List<Vendor> emptyList = new List<Vendor> { };
       CollectionAssert.AreEqual(emptyList, Vendor.GetAll());
+    }
+    [TestMethod]
+    public void GetAll_ReturnsVendorListWithOneVendor_List()
+    {
+      Vendor newVendor = new Vendor("Safeway");
+      List<Vendor> vendorList = new List<Vendor> { newVendor };
+      CollectionAssert.AreEqual(vendorList, Vendor.GetAll());
     }
   }
 }
