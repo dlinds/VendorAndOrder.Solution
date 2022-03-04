@@ -7,6 +7,10 @@ namespace VendorAndOrder.Controllers
 {
   public class OrdersController : Controller
   {
-
+    [HttpGet("/vendors/{id}/orders/add")]
+    public ActionResult Add()
+    {
+      return View();
+    }
   }
 }

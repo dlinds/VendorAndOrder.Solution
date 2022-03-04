@@ -1,0 +1,38 @@
+@{
+  Layout = "_Layout";
+}
+
+@using VendorAndOrder.Models;
+
+<div class="jumbotron bakery-jumbotron">
+  <h1 class="bakery-jumbotron-heading">@Model.VendorName</h1>
+</div>
+<div class="bakery-body-container">
+  <h3>About: @Model.VendorDescription</h3>
+  <h4>@Model.VendorName 's Current Order List:</h4>
+  <ol>
+    <li>
+      $22
+      <ul>
+        <li>5 bread</li>
+        <li>10 pastry</li>
+      </ul>
+    </li>
+    <li>
+      $22
+      <ul>
+        <li>5 bread</li>
+        <li>10 pastry</li>
+      </ul>
+    </li>
+    <li>
+      $22
+      <ul>
+        <li>5 bread</li>
+        <li>10 pastry</li>
+      </ul>
+    </li>
+  </ol>
+  <p>Current Order total: $50</p>
+  <a href="/vendor/@Model.Id/orders/add">Add an additional order</a>
+</div>

@@ -24,5 +24,11 @@ namespace VendorAndOrder.Controllers
       Vendor newVendor = new Vendor(vendorName, vendorDescription);
       return RedirectToAction("Index");
     }
+    [HttpGet("/vendors/{id}")]
+    public ActionResult Show(int Id)
+    {
+      Vendor vendor = Vendor.Find(Id);
+      return View(vendor);
+    }
   }
 }
