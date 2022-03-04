@@ -10,12 +10,19 @@ namespace VendorAndOrder.Controllers
     [HttpGet("/vendors")]
     public ActionResult Index()
     {
-      return View();
+      List<Vendor> vendorList = Vendor.GetAll();
+      return View(vendorList);
     }
     [HttpGet("/vendors/add")]
     public ActionResult Add()
     {
       return View();
+    }
+    [HttpPost("/vendors")]
+    public ActionResult Create(string vendorName, string vendorDescription)
+    {
+      Vendor newVendor = new Vendor(vendorName, vendorDescription);
+      return RedirectToAction("Index");
     }
   }
 }
