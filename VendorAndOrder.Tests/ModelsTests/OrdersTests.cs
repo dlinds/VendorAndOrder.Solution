@@ -14,5 +14,12 @@ namespace VendorAndOrder.Tests
       Order newOrder = new Order(5, "bread");
       Assert.AreEqual(typeof(Order), newOrder.GetType());
     }
+    [TestMethod]
+    public void CheckOrderDetails_CreatesInstanceOfOrder_Order()
+    {
+      Order newOrder = new Order(5, "bread");
+      Assert.AreEqual(5, newOrder.OrderCount);
+      Assert.AreEqual("bread", newOrder.ProductType);
+    }
   }
 }
