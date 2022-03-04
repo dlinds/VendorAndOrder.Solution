@@ -9,10 +9,16 @@ namespace VendorAndOrder.Tests
   public class VendorsTests
   {
     [TestMethod]
-    public void CategoryConstructor_CreatesInstanceOfCategory_Category()
+    public void VendorConstructor_CreatesInstanceOfVendor_Vendor()
     {
       Vendor newVendor = new Vendor("Safeway");
       Assert.AreEqual(typeof(Vendor), newVendor.GetType());
+    }
+    [TestMethod]
+    public void GetVendorName_ReturnsNameOfVendor_String()
+    {
+      Vendor newVendor = new Vendor("Safeway");
+      Assert.AreEqual("Safeway", newVendor.VendorName);
     }
   }
 }

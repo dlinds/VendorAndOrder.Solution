@@ -10,7 +10,7 @@ namespace VendorAndOrder.Models
 
     public Vendor(string vendorName)
     {
-      vendorName = VendorName;
+      VendorName = vendorName;
 
     }
   }
