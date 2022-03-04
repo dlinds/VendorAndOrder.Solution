@@ -20,5 +20,11 @@ namespace VendorAndOrder.Tests
       Vendor newVendor = new Vendor("Safeway");
       Assert.AreEqual("Safeway", newVendor.VendorName);
     }
+    [TestMethod]
+    public void GetVendorID_ReturnsIDOfVendor_Int()
+    {
+      Vendor newVendor = new Vendor("Safeway");
+      Assert.AreEqual(1, newVendor.Id);
+    }
   }
 }
