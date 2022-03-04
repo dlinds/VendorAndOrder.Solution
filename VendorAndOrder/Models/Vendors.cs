@@ -25,6 +25,10 @@ namespace VendorAndOrder.Models
     {
       return _instances;
     }
+    public static Vendor Find(int Id)
+    {
+      return _instances[Id - 1];
+    }
 
 
 

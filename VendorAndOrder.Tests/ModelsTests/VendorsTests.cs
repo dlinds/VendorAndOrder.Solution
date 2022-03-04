@@ -44,5 +44,11 @@ namespace VendorAndOrder.Tests
       List<Vendor> vendorList = new List<Vendor> { newVendor };
       CollectionAssert.AreEqual(vendorList, Vendor.GetAll());
     }
+    [TestMethod]
+    public void Find_ReturnVendorFromID_List()
+    {
+      Vendor newVendor = new Vendor("Safeway", "A Grocery Store");
+      Assert.AreEqual(newVendor, Vendor.Find(1));
+    }
   }
 }
