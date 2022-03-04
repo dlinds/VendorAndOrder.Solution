@@ -8,5 +8,11 @@ namespace VendorAndOrder.Tests
   [TestClass]
   public class VendorsTests
   {
+    [TestMethod]
+    public void CategoryConstructor_CreatesInstanceOfCategory_Category()
+    {
+      Vendor newVendor = new Vendor("Safeway");
+      Assert.AreEqual(typeof(Vendor), newVendor.GetType());
+    }
   }
 }
