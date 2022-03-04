@@ -7,10 +7,12 @@ namespace VendorAndOrder.Controllers
 {
   public class OrdersController : Controller
   {
-    [HttpGet("/vendors/{id}/orders/add")]
-    public ActionResult Add()
+    [HttpGet("/vendors/{Id}/orders/add")]
+    public ActionResult Add(int Id)
     {
-      return View();
+      Dictionary<string, object> listOfOrders = new Dictionary<string, object>();
+      Vendor vendor = Vendor.Find(Id);
+      return View(vendor);
     }
   }
 }

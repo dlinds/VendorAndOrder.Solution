@@ -1,0 +1,42 @@
+@{
+  Layout = "_Layout";
+}
+
+<div class="jumbotron bakery-jumbotron">
+  <h1 class="bakery-jumbotron-heading">@Model.VendorName.ToUpper()</h1>
+  <h3>ADD AN ORDER</h3>
+</div>
+<div class="bakery-body-container">
+  <div class="form-group">
+    <form action="/vendors/@Model/orders/add" method="post">
+      <input id="vendorId" name="vendorId" type="hidden" value="@Model.Id">
+      <div class="row">
+        <div class="col-6">
+          <label for="orderTitle">Name of the order</label>
+          <input type="text" name="orderTitle" id="orderTitle" class="form-control" required>
+        </div>
+        <div class="col-6">
+          <label for="orderDate">Order Date</label>
+          <input type="date" name="orderDate" id="orderDate" class="form-control" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <label for="productType">Product Type</label>
+          <select name="productType" id="productType" class="form-control">
+            <option>Bread</option>
+            <option>Pastry</option>
+            <option>Cake</option>
+          </select>
+        </div>
+        <div class="col-6">
+          <label for="orderCost">Order Cost in USD</label>
+          <input type="number" name="orderCost" id="orderCost" min="1" class="form-control" required>
+        </div>
+      </div>
+      <label for="orderDescription">Add a description for the order</label>
+      <input type="text" name="orderDescription" id="orderDescription" class="form-control" required>
+      <button class="btn btn-dark add-button" type="submit">Add Order</button>
+    </form>
+  </div>
+</div>
