@@ -11,7 +11,7 @@ namespace VendorAndOrder.Tests
     [TestMethod]
     public void OrderConstructor_CreatesInstanceOfOrder_Order()
     {
-      Order newOrder = new Order();
+      Order newOrder = new Order(5, "bread");
       Assert.AreEqual(typeof(Order), newOrder.GetType());
     }
   }
