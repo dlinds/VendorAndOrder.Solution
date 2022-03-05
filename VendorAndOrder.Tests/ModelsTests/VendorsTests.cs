@@ -50,5 +50,14 @@ namespace VendorAndOrder.Tests
       Vendor newVendor = new Vendor("Safeway", "A Grocery Store");
       Assert.AreEqual(newVendor, Vendor.Find(1));
     }
+    [TestMethod]
+    public void AddOrder_AddOrderToVendor_Order()
+    {
+      Vendor newVendor = new Vendor("Safeway", "A Grocery Store");
+      Order newOrder = new Order("Bread Order", "2022/03/04", "Bread", 5, "Order will be picked up in the evening");
+      newVendor.AddOrder(newOrder);
+      List<Order> listOfOrders = newVendor.Orders;
+      Assert.AreEqual(listOfOrders[0].OrderName, "Bread Order");
+    }
   }
 }
