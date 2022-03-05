@@ -36,9 +36,6 @@ namespace VendorAndOrder.Controllers
       Order newOrder = new Order(orderName, orderDate, productType, orderCost, orderDescription);
       Vendor currentVendor = Vendor.Find(vendorId);
       currentVendor.AddOrder(newOrder);
-      // Dictionary<string, object> returnableDictionary = new Dictionary<string, object>();
-      // returnableDictionary.Add("vendor", currentVendor);
-      // returnableDictionary.Add("order);
       return View("Show", currentVendor);
     }
   }

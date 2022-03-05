@@ -6,12 +6,15 @@
 
 <div class="jumbotron bakery-jumbotron">
   <h1 class="bakery-jumbotron-heading">@Model.VendorName</h1>
+  <h6 class="bakery-jumbotron-heading">@Model.VendorDescription</h6>
 </div>
 <div class="bakery-body-container">
-  <h3>About: @Model.VendorDescription</h3>
+
   @if (@Model.Orders.Count > 0)
   {
-    <h4>@Model.VendorName 's Current Order List:</h4>
+    int total = 0;
+    <h4>@Model.VendorName's Current Order List:</h4>
+    <hr>
     <ol>
       @foreach (Order order in @Model.Orders)
       {
@@ -21,12 +24,19 @@
           <ul>
             <li>Date: @order.OrderDate</li>
             <li>Product: @order.ProductType</li>
-            <li>Cost: @order.OrderCost</li>
+            <li>Cost: $@order.OrderCost</li>
+            <div class="hidden">@(total = total += @order.OrderCost)</div>
           </ul>
         </li>
+        <hr>
       }
     </ol>
-    <p>Current Order total: $50</p>
+    <p>Current Order total: $@total</p>
+    <a href="/vendors/@Model.Id/orders/add">Add an additional order</a>
   }
-  <a href="/vendors/@Model.Id/orders/add">Add an additional order</a>
+  else
+  {
+    <p>@Model.VendorName doesn't have any orders yet. Add one <a href="/vendors/@Model.Id/orders/add">here</a></p>
+  }
+
 </div>
