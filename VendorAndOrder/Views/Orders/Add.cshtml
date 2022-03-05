@@ -2,17 +2,71 @@
   Layout = "_Layout";
 }
 @using VendorAndOrder.Models;
-@if (@Model.GetType() == typeof(Vendor))
-{
+@functions {
+  public string GetFormID()
+  {
+    if (Model.GetType().GetProperty("Id") == null)
+    {
+      return "0";
+    }
+    else
+    {
+      return @Model.Id.ToString();
+    }
+  }
+}
+@{
+  <div class="hidden">
+    @{
+      bool isVendorAlreadySelected = false;
+    }
+
+
+    @if (Model.GetType() == typeof(Vendor))
+    {
+      @(isVendorAlreadySelected = true)
+    }
+
+  </div>
 
   <div class="jumbotron bakery-jumbotron">
-    <h1 class="bakery-jumbotron-heading">@Model.VendorName.ToUpper()</h1>
-    <h3>Add an order</h3>
+    <h1 class="bakery-jumbotron-heading">
+      @if (@isVendorAlreadySelected == true)
+      {
+        @(Model.VendorName.ToUpper())
+      }
+      else
+      {
+        @("SELECT VENDOR")
+      }
+    </h1>
+    <h3 class="bakery-jumbotron-heading">Add an order</h3>
   </div>
   <div class="bakery-body-container">
     <div class="form-group">
-      <form action="/vendors/@Model.Id/orders" method="post">
-        <input id="vendorId" name="vendorId" type="hidden" value="@Model.Id">
+      <form action="/vendors/@GetFormID()/orders" method="post" id="newOrderForm">
+        @if (@isVendorAlreadySelected == true)
+        {
+          <input id="vendorId" name="vendorId" type="hidden" value="@Model.Id">
+        }
+        else
+        {
+          <label for="vendorId">Please select which vendor this is for</label>
+          <select id="vendorId" name="vendorId" class="form-control" required>
+            <option disabled selected value> -- Select a vendor to add the order to -- </option>
+
+            @foreach (Vendor vendor in Model)
+            {
+              <option value='@vendor.Id'>@vendor.VendorName</option>
+            }
+          </select>
+          <script>
+            $("#vendorId").change(function () {
+              $("#newOrderForm").attr('action', '/vendors/' + $('#vendorId').val() + '/orders');
+            });
+
+          </script>
+        }
         <div class="row">
           <div class="col-6">
             <label for="orderName">Name of the order</label>
@@ -42,12 +96,5 @@
         <button class="btn btn-dark add-button" type="submit">Add Order</button>
       </form>
     </div>
-  </div>
-}
-else
-{
-  <div class="jumbotron bakery-jumbotron">
-    <h1 class="bakery-jumbotron-heading">This is a test here</h1>
-    <h3>Add an order</h3>
   </div>
 }
