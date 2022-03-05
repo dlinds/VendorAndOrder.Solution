@@ -14,6 +14,7 @@ namespace VendorAndOrder.Models
     {
       VendorName = vendorName;
       VendorDescription = vendorDescription;
+      Orders = new List<Order> { };
       _instances.Add(this);
       Id = _instances.Count;
     }
@@ -28,6 +29,10 @@ namespace VendorAndOrder.Models
     public static Vendor Find(int Id)
     {
       return _instances[Id - 1];
+    }
+    public void AddOrder(Order order)
+    {
+      Orders.Add(order);
     }
 
 

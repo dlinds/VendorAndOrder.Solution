@@ -4,11 +4,11 @@
 
 <div class="jumbotron bakery-jumbotron">
   <h1 class="bakery-jumbotron-heading">@Model.VendorName.ToUpper()</h1>
-  <h3>ADD AN ORDER</h3>
+  <h3>Add an order</h3>
 </div>
 <div class="bakery-body-container">
   <div class="form-group">
-    <form action="/vendors/@Model/orders/add" method="post">
+    <form action="/vendors/@Model.Id/orders" method="post">
       <input id="vendorId" name="vendorId" type="hidden" value="@Model.Id">
       <div class="row">
         <div class="col-6">

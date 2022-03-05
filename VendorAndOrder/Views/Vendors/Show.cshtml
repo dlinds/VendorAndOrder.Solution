@@ -9,30 +9,24 @@
 </div>
 <div class="bakery-body-container">
   <h3>About: @Model.VendorDescription</h3>
-  <h4>@Model.VendorName 's Current Order List:</h4>
-  <ol>
-    <li>
-      $22
-      <ul>
-        <li>5 bread</li>
-        <li>10 pastry</li>
-      </ul>
-    </li>
-    <li>
-      $22
-      <ul>
-        <li>5 bread</li>
-        <li>10 pastry</li>
-      </ul>
-    </li>
-    <li>
-      $22
-      <ul>
-        <li>5 bread</li>
-        <li>10 pastry</li>
-      </ul>
-    </li>
-  </ol>
-  <p>Current Order total: $50</p>
+  @if (@Model.Orders.Count > 0)
+  {
+    <h4>@Model.VendorName 's Current Order List:</h4>
+    <ol>
+      @foreach (Order order in @Model.Orders)
+      {
+        <li>
+          <h5>@order.OrderName</h5>
+          <p>@order.OrderDescription</p>
+          <ul>
+            <li>Date: @order.OrderDate</li>
+            <li>Product: @order.ProductType</li>
+            <li>Cost: @order.OrderCost</li>
+          </ul>
+        </li>
+      }
+    </ol>
+    <p>Current Order total: $50</p>
+  }
   <a href="/vendors/@Model.Id/orders/add">Add an additional order</a>
 </div>
