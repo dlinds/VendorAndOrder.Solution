@@ -1,0 +1,38 @@
+@{
+  Layout = "_Layout";
+}
+
+@using VendorAndOrder.Models;
+
+<div class="jumbotron bakery-jumbotron">
+  <h1 class="bakery-jumbotron-heading">ALL ORDERS</h1>
+</div>
+<div class="bakery-body-container">
+  @foreach (Vendor vendor in Model)
+  {
+    int total = 0;
+    <div class="vendor-container">
+      <h4>@vendor.VendorName.ToUpper()</h4>
+      <h6>Current Order List:</h6>
+      <hr>
+      <ol>
+        @foreach (Order order in vendor.Orders)
+        {
+          <li>
+            <h5>@order.OrderName</h5>
+            <p>@order.OrderDescription</p>
+            <ul>
+              <li>Date: @order.OrderDate</li>
+              <li>Product: @order.ProductType</li>
+              <li>Cost: $@order.OrderCost</li>
+              <div class="hidden">@(total = total += @order.OrderCost)</div>
+            </ul>
+          </li>
+          <hr>
+        }
+      </ol>
+      <p>Order total: $@total</p>
+      <a href="/vendors/@vendor.Id/orders/add">Add an additional order for @vendor.VendorName</a>
+    </div>
+  }
+</div>

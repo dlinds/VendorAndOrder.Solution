@@ -20,5 +20,11 @@ namespace VendorAndOrder.Controllers
       List<Vendor> listOfVendors = Vendor.GetAll();
       return View("Add", listOfVendors);
     }
+    [HttpGet("/orders")]
+    public ActionResult Index()
+    {
+      List<Vendor> listOfVendors = Vendor.GetAll();
+      return View(listOfVendors);
+    }
   }
 }
