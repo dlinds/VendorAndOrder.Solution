@@ -14,5 +14,11 @@ namespace VendorAndOrder.Controllers
       Vendor vendor = Vendor.Find(Id);
       return View(vendor);
     }
+    [HttpGet("/orders/add")]
+    public ActionResult AddWithNoVendor()
+    {
+      List<Vendor> listOfVendors = Vendor.GetAll();
+      return View("Add", listOfVendors);
+    }
   }
 }
