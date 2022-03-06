@@ -2,31 +2,16 @@
   Layout = "_Layout";
 }
 @using VendorAndOrder.Models;
-@functions {
-  public string GetFormID()
-  {
-    if (Model.GetType().GetProperty("Id") == null)
-    {
-      return "0";
-    }
-    else
-    {
-      return @Model.Id.ToString();
-    }
-  }
-}
+
 @{
   <div class="hidden">
     @{
       bool isVendorAlreadySelected = false;
     }
-
-
     @if (Model.GetType() == typeof(Vendor))
     {
       @(isVendorAlreadySelected = true)
     }
-
   </div>
 
   <div class="jumbotron bakery-jumbotron">
@@ -44,17 +29,19 @@
   </div>
   <div class="bakery-body-container">
     <div class="form-group">
-      <form action="/vendors/@GetFormID()/orders" method="post" id="newOrderForm">
+      <form action="/vendors/0/orders" method="post" id="newOrderForm">
         @if (@isVendorAlreadySelected == true)
         {
           <input id="vendorId" name="vendorId" type="hidden" value="@Model.Id">
+          <script>
+            $("#newOrderForm").attr('action', '/vendors/@Model.Id/orders');
+          </script>
         }
         else
         {
           <label for="vendorId">Please select which vendor this is for</label>
           <select id="vendorId" name="vendorId" class="form-control" required>
             <option disabled selected value> -- Select a vendor to add the order to -- </option>
-
             @foreach (Vendor vendor in Model)
             {
               <option value='@vendor.Id'>@vendor.VendorName</option>
@@ -65,7 +52,6 @@
               $("#newOrderForm").attr('action', '/vendors/' + $('#vendorId').val() + '/orders');
               $("#vendorNameHeader").text($("#vendorId option:selected").text())
             });
-
           </script>
         }
         <div class="row">
