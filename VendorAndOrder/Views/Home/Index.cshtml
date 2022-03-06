@@ -3,36 +3,45 @@
 }
 
 
-
-<h3>Welcome Back Pierre!</h3>
-<p>What would you like to do today?</p>
-<div class="row">
-  <div class="col-6">
-    <div class="card">
-      <div class="card-title">
-        <h4>Vendors</h4>
-      </div>
-      <hr>
-      <div class="card-body">
-        <a href="/vendors">View All Vendors</a>
-      </div>
-      <div class="card-body">
-        <a href="/vendors/add">Add a New Vendor</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-6">
-    <div class="card">
-      <div class="card-title">
-        <h4>Orders</h4>
-      </div>
-      <hr>
-      <div class="card-body">
-        <a href="/orders">View All Orders</a>
-      </div>
-      <div class="card-body">
-        <a href="/orders/add">Add a New Order</a>
-      </div>
-    </div>
-  </div>
+<div class="jumbotron bakery-jumbotron">
+  <h1 class="bakery-jumbotron-heading">Welcome Back Pierre!</h1>
+  <h6 class="bakery-jumbotron-heading">What would you like to do today?</h6>
 </div>
+<div class="bakery-body-container">
+  <div class="row">
+    <div class="col-6">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">
+            Vendors
+          </h3>
+          <hr>
+          <p class="card-text">Add a new vendor, or view all vendors. You currently have @Model vendors added.</p>
+          <a class="btn btn-dark" href="/vendors">View All Vendors</a>
+          <a class="btn btn-dark" href="/vendors/add">Add a New Vendor</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">
+            Orders
+          </h3>
+          <hr>
+          @if (@Model > 0)
+          {
+            <p class="card-text">You can either view all orders for any of your @Model vendors, or add an order to a particular vendor.</p>
+            <a class="btn btn-dark" href="/orders">View All Orders</a>
+            <a class="btn btn-dark" href="/orders/add">Add a New Order</a>
+          }
+          else
+          {
+            <p class="card-text">You haven't yet added any vendors, so you can't add any orders yet. Please add a vendor first.</p>
+            <button class="btn btn-dark" disabled>View All Orders</button>
+            <button class="btn btn-dark" disabled>Add a New Order</button>
+          }
+        </div>
+      </div>
+    </div>
+  </div>

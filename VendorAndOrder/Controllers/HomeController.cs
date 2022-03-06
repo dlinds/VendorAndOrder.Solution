@@ -10,7 +10,8 @@ namespace VendorAndOrder.Controllers
     [HttpGet("/")]
     public ActionResult Index()
     {
-      return View();
+      int vendorCount = Vendor.GetAll().Count;
+      return View(vendorCount);
     }
   }
 }

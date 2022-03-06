@@ -30,7 +30,7 @@
   </div>
 
   <div class="jumbotron bakery-jumbotron">
-    <h1 class="bakery-jumbotron-heading">
+    <h1 class="bakery-jumbotron-heading" id="vendorNameHeader">
       @if (@isVendorAlreadySelected == true)
       {
         @(Model.VendorName.ToUpper())
@@ -63,6 +63,7 @@
           <script>
             $("#vendorId").change(function () {
               $("#newOrderForm").attr('action', '/vendors/' + $('#vendorId').val() + '/orders');
+              $("#vendorNameHeader").text($("#vendorId option:selected").text())
             });
 
           </script>
